@@ -1,0 +1,18 @@
+{
+    "private": true,
+    "name": "cdsp-monitoring",
+    "version": "1.0.0",
+    "description": "Monitorin service for CDSP",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "config": "^1.26.1",
+        "express": "^4.15.3",
+        "mongodb": "^2.2.27",
+        "mongoose": "^4.10.4",
+        "redis": "^2.7.1",
+        "rethinkdb": "^2.3.3"
+    }
+}

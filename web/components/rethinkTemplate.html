@@ -1,0 +1,7 @@
+<span ng-switch="$ctrl.rethinkStatus.status">
+    <i title="Running" class="material-icons md-18 green" ng-switch-when="RUNNING">done</i>
+    <i title="Connection Refused" class="material-icons md-18 red" ng-switch-when="ECONNREFUSED">highlight_off</i>
+    <i title="Time Out" class="material-icons md-18 orange" ng-switch-when="ETIMEOUT">access_time</i>
+    <i title="Monitoring Service Down" class="material-icons md-18 orange" ng-switch-when="INDETERMINATE">help_outline</i>
+    <i title="Not ready" class="material-icons md-18 orange" ng-switch-default>report_problem</i>
+</span>

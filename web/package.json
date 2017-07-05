@@ -1,0 +1,23 @@
+{
+    "private": true,
+    "name": "cdsp-monitoring-web",
+    "version": "1.0.0",
+    "description": "UI for cdsp monitoring",
+    "main": "app.js",
+    "scripts": {
+        "postinstall": "bower install",
+        "start": "http-server dist"
+    },
+    "author": "",
+    "devDependencies": {
+        "grunt": "^1.0.1",
+        "grunt-contrib-connect": "^1.0.2",
+        "grunt-contrib-copy": "^1.0.0",
+        "grunt-contrib-cssmin": "^2.2.0",
+        "grunt-contrib-jshint": "^1.1.0",
+        "grunt-contrib-less": "^1.4.1",
+        "grunt-contrib-uglify": "^3.0.1",
+        "grunt-contrib-watch": "^1.0.0",
+        "jshint-stylish": "^2.2.1"
+    }
+}
