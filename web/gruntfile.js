@@ -67,6 +67,29 @@ module.exports = function(grunt) {
                 flatten: true
             }
         },
+        ngconstant: {
+            options: {
+                name: 'config',
+                wrap: '\'use strict\';\n\n{%= __ngModule %}',
+                space: '  '
+            },
+            development: {
+                options: {
+                    dest: '<%= distdir %>/config.js'
+                },
+                constants: {
+                    url: 'http://localhost:8080'
+                }
+            },
+            production: {
+                options: {
+                    dest: '<%= distdir %>/config.js'
+                },
+                constants: {
+                    url: ''
+                }
+            }
+        },
         watch: {
             files: '<%= src.app %>',
             tasks: ['copy']
@@ -74,7 +97,7 @@ module.exports = function(grunt) {
         connect: {
             server: {
                 options: {
-                    port: 8000,
+                    port: 8001,
                     base: 'dist'
                 }
             }
@@ -82,7 +105,8 @@ module.exports = function(grunt) {
     });
 
     // Default task(s)
-    grunt.registerTask('default', ['copy', 'uglify', 'connect', 'watch']);
+    grunt.registerTask('default', ['ngconstant:development', 'uglify', 'copy', 'connect', 'watch']);
+    grunt.registerTask('prod', ['ngconstant:production', 'uglify', 'copy']);
 
     // Load dependencies
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -92,4 +116,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-ng-constant');
 };
+
+// Setup ng-config: https://github.com/werk85/grunt-ng-constant#upgrade-from-v04x-to-v05x
+// Using ENV: https://stackoverflow.com/questions/16339595/how-do-i-configure-different-environments-in-angular-js
+// Using provider:  https://stackoverflow.com/questions/23217263/angular-js-resource-as-a-service-with-dynamic-root
