@@ -7,7 +7,7 @@ COPY api .
 RUN npm install
 
 COPY web ./web
-RUN cd web && npm run-script prod
+RUN cd web && npm install && npm run-script prod
 RUN mv web/dist ./html
 RUN rm -rf ./web
 
