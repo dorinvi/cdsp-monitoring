@@ -6,8 +6,10 @@ RUN adduser --disabled-password --gecos '' cdsp
 # Install Bower & Grunt
 RUN npm --silent install -g bower grunt-cli
 
-USER cdsp
-WORKDIR /home/cdsp
+COPY web ./web
+RUN cd web && npm install && npm run-script prod
+RUN mv web/dist ./html
+RUN rm -rf ./web
 
 COPY web .
 RUN npm --silent install
