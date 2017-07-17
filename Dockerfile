@@ -1,15 +1,22 @@
-FROM node:alpine
-# RUN apk add --update nodejs
-# RUN apk add --update nodejs nodejs-npm && npm install npm@latest -g
+# Build frontend
+FROM node:6 AS buildenv
 
-WORKDIR cdsp-monitoring
+RUN adduser --disabled-password --gecos '' cdsp
+
+# Install Bower & Grunt
+RUN npm --silent install -g bower grunt-cli
+
+USER cdsp
+WORKDIR /home/cdsp
+
+COPY web .
+RUN npm --silent install
+RUN npm --silent run-script prod
+
+# Build final image
+FROM node:6-alpine
 COPY api .
-RUN npm install
-
-COPY web ./web
-RUN cd web && npm run-script prod
-RUN mv web/dist ./html
-RUN rm -rf ./web
-
+RUN npm --silent install
+COPY --from=buildenv /home/cdsp/dist html
 EXPOSE 8080
-CMD ["npm","start"]
+ENTRYPOINT ["npm","start"]
