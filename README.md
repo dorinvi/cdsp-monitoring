@@ -23,8 +23,13 @@ docker run --name <CONTAINER_NAME> -e "REDIS_HOST=<IP>" -e "RETHINK_HOST=<IP>" -
 docker start <CONTAINER_NAME>
 ```
 
-Note: For `docker run` the following options can be also used:
-* `-d` : to run in the background  
-* `-it` : to run in terminal interactive, (add `sh` at the end)
+> For `docker run` the following options can be also used:  
+> - `-d` to run in the background  
+> - `-it` to run in terminal interactive, (add `sh` at the end) 
 
+* Using docker compose:
+```
+docker-compose up
+```
+> To rebuild this image you must use `docker-compose build` or `docker-compose up --build`.
 
